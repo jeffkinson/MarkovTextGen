@@ -53,7 +53,7 @@ public class StudentGrades {
 
 ## Checkpoint 1
 
-For Checkpoint 1, you'll write a class called `WordCounter` that reads in a text file called "alice.txt" and counts how many times each word occurs. The program should scan through the entire text file, and has a HashTable to count how many times each word occurs. There should be a method with the signature
+For Checkpoint 1, you'll write a class called `main.TextGenerator.WordCounter` that reads in a text file called "alice.txt" and counts how many times each word occurs. The program should scan through the entire text file, and has a HashTable to count how many times each word occurs. There should be a method with the signature
 
 `public int getWordCounts(String word)`
 
@@ -61,11 +61,17 @@ that returns how many times a word occurs in the text, or 0 if the word doesn't 
 
 You will probably want to use a `FileReader` to read in the text file, and a `HashMap<String, Integer>` to count how many times each word occurs.
 
+You should also add the following methods:
 
+`public String getMostCommonWord()' returns the word that occurs most often in the text
+
+`public int getCountOfMostCommonWord()` returns how often the most common word occurs in the text
+
+`public String getSecondMostCommonWord()' returns the word that occurs second most often in the text
 
 ## Checkpoint 2
 
-For checkpoint 2, you'll expand the capability of the `WordCounter`. Add a method `public ArrayList<String>` getWordsThatFollow(String previousWord). Given a word that occurs, the program should return an ArrayList of every word that could possibly occur next. 
+For checkpoint 2, you'll expand the capability of the `main.TextGenerator.WordCounter`. Add a method `public ArrayList<String>` getWordsThatFollow(String previousWord). Given a word that occurs, the program should return an ArrayList of every word that could possibly occur next.
 
 For example, `getWordsThatFollow("Cheshire")` should return `[cat, cats, Cat, Cat:, Cat, Cat]`. The order of this list does not matter. `getWordsThatFollow("jumped") should return [up, into, up, up, up].
 
@@ -73,7 +79,7 @@ For example, `getWordsThatFollow("Cheshire")` should return `[cat, cats, Cat, Ca
 
 ## Checkpoint 3
 
-For Checkpoint 3, you'll create a new class called `TextGenerator`. The `TextGenerator` class should have a `WordCounter` class. It should also have a new method 
+For Checkpoint 3, you'll create a new class called `main.TextGenerator`. The `main.TextGenerator` class should have a `main.TextGenerator.WordCounter` class. It should also have a new method
 
 `public void generateRandomSentence(String firstWord)`
 

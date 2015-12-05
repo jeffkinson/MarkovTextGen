@@ -1,8 +1,6 @@
-import java.util.Scanner;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.ArrayList;
+
+import main.TextGenerator.WordCounter;
 
 public class MarkovGenerator {
     WordCounter counter;

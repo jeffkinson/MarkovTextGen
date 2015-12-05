@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class WordCounter {
+public class WordCounter implements TextAnalyzer {
     private HashMap<String, Integer> wordCounts;
 
     public WordCounter(String filename) {
@@ -38,6 +38,13 @@ public class WordCounter {
 	}
     }
 
+    public boolean startsWithCapitalLetter(String word) {
+	return true;
+    }
+
+    public ArrayList<String> getAllWordsThatStartWithACapitalLetter() {
+	return false;
+    }
 
     public static void main (String[] args) {
 	WordCounter wc = new WordCounter("alice_tokenized.txt");	
