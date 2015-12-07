@@ -19,48 +19,49 @@ public class Checkpoint2Tests {
 
 	@Test
 	public void testWordCounts() {
-		verify.that(wc.getWordCounts("It") == 1);
-		verify.that(wc.getWordCounts("it") == 9);
-		verify.that(wc.getWordCounts("was") == 11);
-		verify.that(wc.getWordCounts("of") == 12);
+		verify.that(wc.getWordCounts("It")).isEqualTo(1);
+		verify.that(wc.getWordCounts("it")).isEqualTo(9);
+		verify.that(wc.getWordCounts("was")).isEqualTo(11);
+		verify.that(wc.getWordCounts("of")).isEqualTo(12);
 	}
 	
 	@Test
 	public void testMostCommonWord() {
 		String mostCommonWord = wc.getMostCommonWord();
 		String expectedMostCommonWord = ",";
-		verify.that(expectedMostCommonWord.equals(mostCommonWord));
+		verify.that(expectedMostCommonWord).isEqualTo(mostCommonWord);
 	}
 	
 	@Test
 	public void testStartsWithCapitalLetter() {
-		verify.that(wc.startsWithCapitalLetter("It"));
-		verify.that(wc.startsWithCapitalLetter("BY"));
-		verify.that(wc.startsWithCapitalLetter("A"));
+		verify.that(wc.startsWithCapitalLetter("It")).isTrue();
+		verify.that(wc.startsWithCapitalLetter("BY")).isTrue();
+		verify.that(wc.startsWithCapitalLetter("A")).isTrue();
 		
-		verify.that(!wc.startsWithCapitalLetter("tt"));
+		verify.that(wc.startsWithCapitalLetter("tt")).isFalse();
 	}
 	
 	@Test
 	public void testIsSentenceEndingPunctuation() {
-		verify.that(wc.isSentenceEndingPunctuation("."));
-		verify.that(wc.isSentenceEndingPunctuation("?"));
-		verify.that(wc.isSentenceEndingPunctuation("!"));
+		verify.that(wc.isSentenceEndingPunctuation(".")).isTrue();
+		verify.that(wc.isSentenceEndingPunctuation("?")).isTrue();
+		verify.that(wc.isSentenceEndingPunctuation("!")).isTrue();
 		
-		verify.that(!wc.isSentenceEndingPunctuation("a"));
+		verify.that(wc.isSentenceEndingPunctuation("a")).isFalse();
 	}
 	
 	@Test
 	public void testWordsThatStartWithCapitalLetter() {
-	    verify.that(hasWords(wc.getAllWordsThatStartWithACapitalLetter(), "It", "Light", "Darkness", "Heaven"));
+		boolean foo = hasWords(wc.getAllWordsThatStartWithACapitalLetter(), "It", "Light", "Darkness", "Heaven");
+	    verify.that(hasWords(wc.getAllWordsThatStartWithACapitalLetter(), "It", "Light", "Darkness", "Heaven")).isTrue();
 	}
 	
 	@Test
 	public void testWordsThatCouldComeNext() {
-		verify.that(hasWords(wc.getWordsThatCouldComeNext("It"),   "was"));
-		verify.that(hasWords(wc.getWordsThatCouldComeNext("best"), "of"));
-		verify.that(hasWords(wc.getWordsThatCouldComeNext("was"),  "so", "the", "the", "the", "the", "the", "the", "the", "the", "the", "the"));
-		verify.that(hasWords(wc.getWordsThatCouldComeNext(","),    "for", "in", "it", "it", "it", "it", "it", "it", "it", "it", "it", "that", "the", "we", "we", "we", "we"));
+		verify.that(hasWords(wc.getWordsThatCouldComeNext("It"), "was")).isTrue();
+		verify.that(hasWords(wc.getWordsThatCouldComeNext("best"), "of")).isTrue();
+		verify.that(hasWords(wc.getWordsThatCouldComeNext("was"), "so", "the", "the", "the", "the", "the", "the", "the", "the", "the", "the")).isTrue();
+		verify.that(hasWords(wc.getWordsThatCouldComeNext(","), "for", "in", "it", "it", "it", "it", "it", "it", "it", "it", "it", "that", "the", "we", "we", "we", "we")).isTrue();
 	}
 	
 	private boolean hasWords(List<String> list, String... expectedWords) {
@@ -69,5 +70,4 @@ public class Checkpoint2Tests {
 		Collections.sort(expectedWordsList);
 		return expectedWords.equals(list);
 	}
-
 }
