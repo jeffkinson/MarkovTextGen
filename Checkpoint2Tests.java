@@ -68,6 +68,6 @@ public class Checkpoint2Tests {
 		Collections.sort(list);
 		List<String> expectedWordsList = Arrays.asList(expectedWords);
 		Collections.sort(expectedWordsList);
-		return expectedWords.equals(list);
+		return expectedWordsList.equals(list);
 	}
 }
