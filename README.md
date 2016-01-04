@@ -1,7 +1,7 @@
 # Sentence Generator
 Generate simple English text using Markov chains. Implemented in Java. Intended for APCS high school students.
 
-One interesting area of computer science is natural language processing: writing software like Siri recognize and understand human speech, or to generate new sentences. 
+One interesting area of computer science is natural language processing: writing software like Siri to recognize and understand human speech, or to generate new sentences. 
 
 There are many real-world scenarios where it's useful for a program to create new sentences. For example, Google Translate analyzes a sentence in a foreign language, and generates a new sentence in English with the same meaning. Siri listens to questions, and generates new sentences that answer those questions.
 
@@ -93,7 +93,7 @@ For example, `getWordsThatCouldComeNext("It")` should return `["was"]`.
 
 `getWordsThatCouldComeAfter("was")` should return an `ArrayList` containing the elements `["so", "the", "the", "the", "the", "the", "the", "the", "the", "the", "the"]`. The order of this `ArrayList` doesn't matter, but the number times each element occurs does matter. Since the phrase `"was the"` occurs 10 times and the phrase `"was so"` appears once, the `ArrayList` returned should include `"the"` 10 times and `"so"` once.
 
-
+Hint: you will probably want to use a HashMap<String, ArrayList<String>> to store a list of words that could come next for each word.
 
 ## Checkpoint 3
 
@@ -103,14 +103,14 @@ Download the `SentenceGeneratorStarterCode.java` starter code, and rename it to 
 
 `public String generateRandomSentence()`
 
-This method should generate and a random sentence starting with `firstWord`. To find the next word, it should call the `WordCounter` method `getWordsThatFollow(firstWord)` and randomly choose one of the words that can come ofter `firstWord`. It should keep generating a random word until it generates sentence-ending punctuation: '.', '?', or '!'.
+This method should generate and a random sentence starting with `firstWord`. To find the next word, it should call the `WordCounter` method `getWordsThatCouldComeNext(firstWord)` and randomly choose one of the words that can come ofter `firstWord`. It should keep generating a random word until it generates sentence-ending punctuation: '.', '?', or '!'.
 
 For example, say we call `generateRandomSentence("Alice")`.  ...
-`getWordsThatFollow("Alice")` returns a very large list, which includes `[was, think, started, after, had ...]`
+`getWordsThatCouldComeNext("Alice")` returns a very large list, which includes `[was, think, started, after, had ...]`
 
-Let's say it randomly chooses the word "was". The program would now call `getWordsThatFollow("was")`. This also returns a large list of options, which includes: `[beginning, reading, considering, nothing, just, to, very, going, coming, too, sneezing ...]`
+Let's say it randomly chooses the word "was". The program would now call `getWordsThatCouldComeNext("was")`. This also returns a large list of options, which includes: `[beginning, reading, considering, nothing, just, to, very, going, coming, too, sneezing ...]`
 
-Let's say it randomly chooses the word "always". Calling `getWordsThatFollow("always")` returns a much shorter list: `[HATED, ready, ready, growing, grinned;, six, tea-time, took, getting, pepper, get]`
+Let's say it randomly chooses the word "always". Calling `getWordsThatCouldComeNext("always")` returns a much shorter list: `[HATED, ready, ready, growing, grinned;, six, tea-time, took, getting, pepper, get]`
 
 Let's say it randomly chooses the word "tea-time". There are only two options for the next word: `[., ,]`
 
