@@ -118,3 +118,25 @@ Let's say it randomly chooses ".". This is punctuation that would could end a se
 
 
 Once you've implemented your program, try running it several times. It should output some interesting "sentences". Some of them will make more sence than others.
+
+
+## Different constraints on generating sentences
+
+In this checkpoint, we'll add several variations on the `generateRandomSentence()` method to try slightly different strategies for generating sentences. It should be possible to implement all of these without changing any class other than `SentenceGenerator`.
+
+Write a method `public String generateRandomSentenceWithLength(int length)`. This method should generate random sentences similarly to `generateRandomSentence()`, but try to produce sentences of a given length. For example, `generateRandomSentenceWithLength(5)` should try to produce a sentence with 5 "words" in it (including the capitalized word at the beginning, and the punctuation at the end. It's OK if the method can't always produce a sentence of the specified length, but it should always try to produce sentences of approximately that length.
+
+Write a method `public String generateRandomSentenceIncludingWords(ArrayList<String> wordsToInclude)`. This method should generate random sentences similarly to `generateRandomSentence()`, but try to include all the words specified in `wordsToInclude`. For example, if `myWords` contains `[very, It]`, then `generateRandomSentenceIncludingWords(myWords)` might generate `"It had very well as pigs ."` The words in `wordsToInclude` will only contain words that are found in the text file. It's OK if the method can't always produce a sentence containing all of `wordsToInclude`, but it should always try to use as many as possible.
+
+Write a method `public String generateRandomSentenceWithoutDuplicates()`. This method should generate random sentences similarly to `generateRandomSentence()`, but produce a sentence where no words are repeated. 
+Hint: as you generate the sentence one word at a time, can you use a `HashMap` to keep track of which words have been used so far?
+
+
+## Using longer phrases as context
+
+So far, we've been using just one previous word to predict which word should come next. Looking at the random sentences it generates, you might notice that any two words in a row usually make sense. But longer phrases, and the entire sentence, don't make very much sense. For example, it might generate `"I may as well as well as well as well..."`. Given the previous word `"as"`, there's a high probability of generating `"well"` as the next word, because `"well"` came after `"as"` many times in the text. Next, given the previous word `"well"`, there's a high probability of generating `"as"` as the next word, because `"as"` came after `"well"` many times in the text. The two word phrases `"as well"` and `"well as"` are both common phrases, so our code so far is pretty likely to generate them. But obviously this sentence doesn't make any sense! It would be great if it could look at a slightly longer chunk of the sentence; if it could look at the previous word**s** instead of just one previous word. Then, it could see that given the previous words `"well as"`, it shouldn't generate the word `"well"`, because `"well as well"` never occurred.
+
+In this checkpoint, you will make the `TextAnalyzer` and the `SentenceGenerator` more powerful. Instead of just looking at one previous word, we will keep track of the previous `n` words.
+
+Modify the constructor of `WordCounter` so that it also takes an argument `int n` representing the number of prevoius words to keep track of.
+
