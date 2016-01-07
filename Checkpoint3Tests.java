@@ -1,6 +1,8 @@
 package textGen3;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -53,10 +55,23 @@ public class Checkpoint3Tests {
 		for (int i = 0; i < 100; ++i) {
 			String sentence = generator.generateRandomSentence("new");
 			verify.that(sentence.charAt(sentence.length() - 1)).isEqualTo('.');
+			verify.that(hasOnlyWords(sentence, "new", "foo", "baz", "bar")).isTrue();
 			sentences.add(sentence);
 		}
 		
 		// Ensure that there are at least 4 different sentences generated.
 		verify.that(sentences.size() >= 4).isTrue();
+	}
+
+	private boolean hasOnlyWords(String sentence, String... words) {
+		List<String> expected = Arrays.asList(words);
+
+		for (String word : sentence.replace(".", "").split(" ")) {
+			if (!expected.contains(word)) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
