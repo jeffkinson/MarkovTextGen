@@ -1,7 +1,7 @@
 package textGen3;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -48,28 +48,15 @@ public class Checkpoint3Tests {
 	
 	@Test
 	public void testRandomWordSelectionWhenGeneratingSentence() {
-		for (int i = 0; i < 10; ++i) {
-			String sentence = generator.generateRandomSentence("New");
-			verify.that(hasWords(sentence, "foo", "New", "baz", "bar")).isTrue();
+		Set<String> sentences = new HashSet<String>();
+		
+		for (int i = 0; i < 100; ++i) {
+			String sentence = generator.generateRandomSentence("new");
 			verify.that(sentence.charAt(sentence.length() - 1)).isEqualTo('.');
-		}
-	}
-
-	private boolean hasWords(String sentence, String required, String... expectedWords) {
-		List<String> expected = Arrays.asList(expectedWords);
-		boolean foundRequired = false;
-		
-		for (String word : sentence.replace(".",  "").split(" ")) {
-			if (word.equals(required)) {
-				foundRequired = true;
-				continue;
-			}
-			
-			if (!expected.contains(word)) {
-				return false;
-			}
+			sentences.add(sentence);
 		}
 		
-		return foundRequired;
+		// Ensure that there are at least 4 different sentences generated.
+		verify.that(sentences.size() >= 4).isTrue();
 	}
 }
